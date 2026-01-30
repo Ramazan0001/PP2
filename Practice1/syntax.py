@@ -4,18 +4,12 @@ if 5 > 2:
 
 
 #2
-if 5 > 2:
- print("Five is greater than two!")  
-if 5 > 2:
-        print("Five is greater than two!") 
-
-        #3 
-        x = 5
+x = 5
 y = "Hello, World!"
 
 print(x)
 print(y)
-#4
+#3
 print("Hello"); print("How are you?"); print("Bye bye!")
  
 

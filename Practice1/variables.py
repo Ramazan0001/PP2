@@ -21,3 +21,14 @@ A = "Sally"
 
 print(a)
 print(A)
+
+#5 
+x = "awesome"
+
+def myfunc():
+  x = "fantastic"
+  print("Python is " + x)
+
+myfunc()
+
+print("Python is " + x)
