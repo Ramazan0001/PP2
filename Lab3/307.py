@@ -29,6 +29,7 @@ p1.show()
 p1.move(x2, y2)
 p1.show()
 
+
 p2 = Point(x3, y3)
 
 distance = p1.dist(p2)
