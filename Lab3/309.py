@@ -6,7 +6,6 @@ class Circle:
         pi = 3.14159
         return pi * self.r * self.r
 
-
 r = int(input())
 c = Circle(r)
 print(f"{c.area():.2f}")

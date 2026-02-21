@@ -8,18 +8,13 @@ to_word = {
     "0": "ZER", "1": "ONE", "2": "TWO", "3": "THR", "4": "FOU",
     "5": "FIV", "6": "SIX", "7": "SEV", "8": "EIG", "9": "NIN"
 }
-
-
 if "+" in s:
     op = "+"
 elif "-" in s:
     op = "-"
 else:
     op = "*"
-
-
 left, right = s.split(op)
-
 
 a = ""
 for i in range(0, len(left), 3):
@@ -31,14 +26,12 @@ for i in range(0, len(right), 3):
     b += to_digit[right[i:i+3]]
 b = int(b)
 
-
 if op == "+":
     ans = a + b
 elif op == "-":
     ans = a - b
 else:
     ans = a * b
-
 
 ans_str = str(ans)
 out = ""

@@ -1,7 +1,4 @@
-from __future__ import division
-import sys
-
-class Employee:
+class Employe:
     def __init__(self, name, base_salary):
         self.name = name
         self.base_salary = base_salary
@@ -9,44 +6,48 @@ class Employee:
     def total_salary(self):
         return self.base_salary
 
-class Manager(Employee):
+
+class Manager(Employe):
     def __init__(self, name, base_salary, bonus_percent):
-        Employee.__init__(self, name, base_salary)
+        super().__init__(name, base_salary)
         self.bonus_percent = bonus_percent
 
     def total_salary(self):
-        return self.base_salary * (1 + self.bonus_percent / 100.0)
+        return self.base_salary + self.base_salary * self.bonus_percent / 100
 
-class Developer(Employee):
+
+class Developer(Employe):
     def __init__(self, name, base_salary, completed_projects):
-        Employee.__init__(self, name, base_salary)
+        super().__init__(name, base_salary)
         self.completed_projects = completed_projects
 
     def total_salary(self):
         return self.base_salary + self.completed_projects * 500
 
-class Intern(Employee):
+class Intern(Employe):
     def __init__(self, name, base_salary):
-        Employee.__init__(self, name, base_salary)
+        super().__init__(name, base_salary)
 
-line = sys.stdin.readline().strip()
-parts = line.split()
+data = input().split()
 
-role = parts[0]
+role = data[0]
 
 if role == "Manager":
-    name = parts[1]
-    base = int(parts[2])
-    bonus = int(parts[3])
+    name = data[1]
+    base = int(data[2])
+    bonus = int(data[3])
     emp = Manager(name, base, bonus)
+
 elif role == "Developer":
-    name = parts[1]
-    base = int(parts[2])
-    projects = int(parts[3])
+    name = data[1]
+    base = int(data[2])
+    projects = int(data[3])
     emp = Developer(name, base, projects)
+
 else:
-    name = parts[1]
-    base = int(parts[2])
+    name = data[1]
+    base = int(data[2])
     emp = Intern(name, base)
 
-sys.stdout.write("Name: {}, Total: {:.2f}\n".format(emp.name, emp.total_salary()))
+print("Name:", emp.name)
+print("Total:", round(emp.total_salary(), 2))
