@@ -58,7 +58,7 @@ class Person:
     self.name = name
 
   def greet(self):
-    print("Hello!")
+    print("Hello!",self.name)
 
 p1 = Person("Emil")
 
