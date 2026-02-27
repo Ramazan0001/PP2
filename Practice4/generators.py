@@ -44,3 +44,68 @@ gen = echo_generator()
 next(gen)  # Prime the generator
 gen.send("Hello")
 gen.send("World")
+
+
+#Task1
+def square(N):
+    i = 0
+    while i <= N:
+        yield i * i
+        i += 1
+
+N = int(input())
+for x in square_up_to(N):
+    print(x)
+
+#Task2
+def evennumbers(n):
+    i = 0
+    while i <= n:
+        if i % 2 == 0:
+            yield i
+        i += 1
+
+n = int(input())
+result = []
+
+for x in evennumbers(n):
+    result.append(str(x))
+
+print(",".join(result))
+
+#Task3
+def divisible(n):
+    i = 0
+    while i <= n:
+        if i % 3 == 0 and i % 4 == 0:
+            yield i
+        i += 1
+
+n = int(input())
+
+for x in divisible(n):
+    print(x)
+
+#Task4
+def squares(a, b):
+    i = a
+    while i <= b:
+        yield i * i
+        i += 1
+
+a,b= int(input())
+
+for value in squares(a, b):
+    print(value)
+ 
+#Task5
+def countdown(n):
+    i = n
+    while i >= 0:
+        yield i
+        i -= 1
+
+n = int(input())
+
+for x in countdown(n):
+    print(x)
