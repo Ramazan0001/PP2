@@ -54,11 +54,11 @@ def square(N):
         i += 1
 
 N = int(input())
-for x in square_up_to(N):
+for x in square(N):
     print(x)
 
 #Task2
-def evennumbers(n):
+def even(n):
     i = 0
     while i <= n:
         if i % 2 == 0:
@@ -68,13 +68,13 @@ def evennumbers(n):
 n = int(input())
 result = []
 
-for x in evennumbers(n):
+for x in even(n):
     result.append(str(x))
 
 print(",".join(result))
 
 #Task3
-def divisible(n):
+def divis(n):
     i = 0
     while i <= n:
         if i % 3 == 0 and i % 4 == 0:
@@ -83,11 +83,11 @@ def divisible(n):
 
 n = int(input())
 
-for x in divisible(n):
+for x in divis(n):
     print(x)
 
 #Task4
-def squares(a, b):
+def sq(a, b):
     i = a
     while i <= b:
         yield i * i
@@ -95,11 +95,11 @@ def squares(a, b):
 
 a,b= int(input())
 
-for value in squares(a, b):
+for value in sq(a, b):
     print(value)
  
 #Task5
-def countdown(n):
+def count(n):
     i = n
     while i >= 0:
         yield i
@@ -107,5 +107,5 @@ def countdown(n):
 
 n = int(input())
 
-for x in countdown(n):
+for x in count(n):
     print(x)
