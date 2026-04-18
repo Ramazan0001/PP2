@@ -17,7 +17,7 @@ pygame.display.set_caption("Music Player")
 clock = pygame.time.Clock()
 font = pygame.font.SysFont(None, 36)
 
-# путь к музыке
+
 base = os.path.dirname(__file__)
 music_folder = os.path.join(base, "music")
 
@@ -43,7 +43,7 @@ while running:
             elif event.key == pygame.K_q:
                 running = False
 
-    # текст
+    
     title = font.render("Music Player", True, BLACK)
     screen.blit(title, (300, 50))
 
