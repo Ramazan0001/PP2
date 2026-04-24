@@ -8,7 +8,6 @@ pygame.init()
 FPS = 60
 clock = pygame.time.Clock()
 
-# Colors in RGB format
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
@@ -29,22 +28,18 @@ SPEED = 5
 SCORE = 0
 COINS = 0
 
-# Fonts for text
+
 font = pygame.font.SysFont("Verdana", 60)
 font_small = pygame.font.SysFont("Verdana", 20)
 
-# Load images
 background = pygame.image.load("PP/Practice10/images/AnimatedStreet.png")
 player_img = pygame.image.load("PP/Practice10/images/Player.png")
 enemy_img = pygame.image.load("PP/Practice10/images/Enemy.png")
 
-# Load crash sound
 crash_sound = pygame.mixer.Sound("PP/Practice10/images/crash.wav")
 
-# Game Over text
 game_over_text = font.render("Game Over", True, BLACK)
 
-# Player position
 player_rect = player_img.get_rect()
 player_rect.center = (160, 520)
 
@@ -68,14 +63,11 @@ def reset_enemy():
     enemy_rect.top = 0
     enemy_rect.center = (random.randint(40, SCREEN_WIDTH - 40), 0)
 
-
-# Function for resetting coin position
 def reset_coin():
     global coin_rect
 
     coin_rect.top = -20
     coin_rect.center = (random.randint(40, SCREEN_WIDTH - 40), -20)
-
 
 # Function for restarting the whole game
 def reset_game():
@@ -90,7 +82,7 @@ def reset_game():
     # Reset player position
     player_rect.center = (160, 520)
 
-    # Reset enemy and coin
+    
     reset_enemy()
     reset_coin()
 
@@ -101,12 +93,12 @@ while True:
     # Check all events
     for event in pygame.event.get():
 
-        # If player closes the window
+        
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
 
-        # If game is over, press R to restart
+       
         if game_over:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_r:
@@ -170,23 +162,18 @@ while True:
         # Draw Game Over text
         screen.blit(game_over_text, (30, 250))
 
-        # Draw restart instruction
+        
         restart_text = font_small.render("Press R to Restart", True, WHITE)
         screen.blit(restart_text, (100, 320))
 
-    # Create score text
+    
     score_text = font_small.render("Score: " + str(SCORE), True, BLACK)
 
-    # Create coin text
+    
     coin_text = font_small.render("Coins: " + str(COINS), True, BLACK)
-
-    # Draw score in the top-left corner
+    
     screen.blit(score_text, (10, 10))
-
-    # Draw coins in the top-right corner
     screen.blit(coin_text, (280, 10))
-
-    # Update display
     pygame.display.update()
 
     # Limit game speed to 60 FPS
