@@ -18,5 +18,5 @@ while running:
 
     clock.draw(screen)
     pygame.display.flip()
-    fps.tick(60)
+    fps.tick(1)
 pygame.quit()

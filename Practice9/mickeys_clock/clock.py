@@ -31,11 +31,7 @@ def draw(screen):
     minute_angle = -minute * 6
     sec_angle = -sec * 6
 
-    #
-    right_rect = right.get_rect(center=CENTER)
-    left_rect = left.get_rect(center=CENTER)
 
-    
     minute_img, minute_rect = rotate_center(right, minute_angle, CENTER)
     sec_img, sec_rect = rotate_center(left, sec_angle, CENTER)
 
