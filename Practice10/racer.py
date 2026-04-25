@@ -146,20 +146,20 @@ while True:
             COINS += 1
             reset_coin()
 
-        # Draw player car
+        
         screen.blit(player_img, player_rect)
 
         # Draw enemy car
         screen.blit(enemy_img, enemy_rect)
 
-        # Draw coin as yellow circle
+        
         pygame.draw.circle(screen, YELLOW, coin_rect.center, coin_size // 2)
 
     # If game is over
     else:
         screen.fill(RED)
 
-        # Draw Game Over text
+        
         screen.blit(game_over_text, (30, 250))
 
         

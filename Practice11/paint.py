@@ -36,47 +36,13 @@ mode = "draw"
 # Checks if mouse button is pressed
 drawing = False
 
-# Start position for shapes
+
 start_pos = None
-
-
-# Function for filling closed area with selected color
-def flood_fill(surface, start_pos, new_color):
-    # Get color of the clicked pixel
-    old_color = surface.get_at(start_pos)
-
-    # Convert new color to pygame Color
-    new_color = pygame.Color(new_color)
-
-    # If clicked area already has this color, do nothing
-    if old_color == new_color:
-        return
-
-    # List of pixels that we need to check
-    pixels = [start_pos]
-
-    while pixels:
-        x, y = pixels.pop()
-
-        # Check if pixel is inside the screen
-        if x < 0 or x >= WIDTH or y < 0 or y >= HEIGHT:
-            continue
-
-        # If current pixel has the old color, change it
-        if surface.get_at((x, y)) == old_color:
-            surface.set_at((x, y), new_color)
-
-            # Add neighbour pixels
-            pixels.append((x + 1, y))
-            pixels.append((x - 1, y))
-            pixels.append((x, y + 1))
-            pixels.append((x, y - 1))
-
 
 # Main loop variable
 running = True
 
-# Main program loop
+
 while running:
 
     # Check all events
@@ -106,35 +72,33 @@ while running:
             if event.key == pygame.K_d:
                 mode = "draw"
 
-            # Eraser mode
+            
             if event.key == pygame.K_e:
                 mode = "eraser"
 
-            # Fill mode
-            if event.key == pygame.K_f:
-                mode = "fill"
+           
 
-            # Circle mode
+            
             if event.key == pygame.K_c:
                 mode = "circle"
 
-            # Rectangle mode
+            
             if event.key == pygame.K_r:
                 mode = "rect"
 
-            # Square mode
+           
             if event.key == pygame.K_s:
                 mode = "square"
 
-            # Right triangle mode
+            
             if event.key == pygame.K_t:
                 mode = "right_triangle"
 
-            # Equilateral triangle mode
+            
             if event.key == pygame.K_q:
                 mode = "equilateral_triangle"
 
-            # Rhombus mode
+            
             if event.key == pygame.K_h:
                 mode = "rhombus"
 
@@ -161,7 +125,6 @@ while running:
                 dx = x2 - x1
                 dy = y2 - y1
 
-                # Radius is distance between start point and end point
                 radius_circle = int((dx ** 2 + dy ** 2) ** 0.5)
 
                 pygame.draw.circle(screen, color, start_pos, radius_circle, 2)
@@ -198,7 +161,7 @@ while running:
 
             # Draw right triangle
             if mode == "right_triangle":
-                # Right triangle has one 90 degree angle
+                #
                 points = [
                     (x1, y1),
                     (x1, y2),
@@ -212,10 +175,10 @@ while running:
                 # Side length
                 side = abs(x2 - x1)
 
-                # Height formula for equilateral triangle
+               
                 triangle_height = int(side * math.sqrt(3) / 2)
 
-                # If mouse is dragged down
+                
                 if y2 > y1:
                     points = [
                         (x1, y1 + triangle_height),
@@ -223,7 +186,6 @@ while running:
                         (x1 + side, y1 + triangle_height)
                     ]
 
-                # If mouse is dragged up
                 else:
                     points = [
                         (x1, y1 - triangle_height),
@@ -252,19 +214,17 @@ while running:
         # Mouse movement
         if event.type == pygame.MOUSEMOTION:
 
-            # Draw with brush
+            
             if drawing and mode == "draw":
                 pygame.draw.circle(screen, color, event.pos, radius)
 
-            # Eraser draws white circles
+            
             if drawing and mode == "eraser":
                 pygame.draw.circle(screen, WHITE, event.pos, radius + 10)
 
-    # Update screen
+    
     pygame.display.flip()
 
-    # 60 FPS
     clock.tick(60)
 
-# Quit pygame
 pygame.quit()

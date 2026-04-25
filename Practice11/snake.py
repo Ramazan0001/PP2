@@ -10,23 +10,23 @@ WIDTH, HEIGHT = 600, 600
 # Size of one cell in the grid
 CELL = 20
 
-# Create game window
+
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Snake Practice 11")
 
 # Clock controls the game speed
 clock = pygame.time.Clock()
 
-# Font for score, level and timer text
+
 font = pygame.font.SysFont("Verdana", 20)
 
-# Snake starts with one block
+
 snake = [(100, 100)]
 
-# Initial movement direction: right
+
 dx, dy = CELL, 0
 
-# Initial score
+
 score = 0
 
 # Initial level

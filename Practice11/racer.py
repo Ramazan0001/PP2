@@ -31,17 +31,17 @@ enemy_speed = 5
 # Coin speed
 coin_speed = 5
 
-# Score and collected coins
+
 score = 0
 coins = 0
 
-# Enemy speed increases after this number of coins
+
 N_COINS = 5
 
-# This variable remembers the last coin level for speed increase
+
 last_speed_level = 0
 
-# Fonts for text
+
 font = pygame.font.SysFont("Verdana", 60)
 font_small = pygame.font.SysFont("Verdana", 18)
 
@@ -50,7 +50,7 @@ background = pygame.image.load("Practice10/images/AnimatedStreet.png")
 player_img = pygame.image.load("Practice10/images/Player.png")
 enemy_img = pygame.image.load("Practice10/images/Enemy.png")
 
-# Load crash sound
+
 crash_sound = pygame.mixer.Sound("Practice10/images/crash.wav")
 
 # Game Over text
@@ -137,14 +137,14 @@ def reset_game():
     enemy_speed = 5
     coin_speed = 5
 
-    # Reset score and coins
+   
     score = 0
     coins = 0
 
-    # Reset speed level
+    
     last_speed_level = 0
 
-    # Game starts again
+   
     game_over = False
 
     # Reset player position
@@ -169,7 +169,7 @@ while True:
             pygame.quit()
             sys.exit()
 
-        # If game is over, press R to restart
+        
         if game_over:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_r:
@@ -178,7 +178,7 @@ while True:
     # Draw background
     screen.blit(background, (0, 0))
 
-    # If game is not over, update the game
+    
     if not game_over:
 
         # Get pressed keys
@@ -195,7 +195,7 @@ while True:
         # Move enemy down
         enemy_rect.move_ip(0, enemy_speed)
 
-        # If enemy goes below the screen, reset it and add score
+       
         if enemy_rect.bottom > SCREEN_HEIGHT:
             score += 1
             reset_enemy()
@@ -212,10 +212,10 @@ while True:
             crash_sound.play()
             game_over = True
 
-        # Check collision between player and coin
+        
         if player_rect.colliderect(coin_rect):
 
-            # Add coin weight to collected coins
+            
             coins += coin_weight
 
             # Generate new coin
@@ -224,7 +224,7 @@ while True:
             # Calculate current speed level
             current_speed_level = coins // N_COINS
 
-            # If player earned enough coins, increase enemy speed
+            
             if current_speed_level > last_speed_level:
                 enemy_speed += 1
                 last_speed_level = current_speed_level
@@ -250,35 +250,35 @@ while True:
 
     # If game is over
     else:
-        # Fill screen with red color
+        
         screen.fill(RED)
 
-        # Draw Game Over text
+        
         screen.blit(game_over_text, (30, 250))
 
-        # Draw restart instruction
+       
         restart_text = font_small.render("Press R to Restart", True, WHITE)
         screen.blit(restart_text, (100, 320))
 
-    # Create score text
+   
     score_text = font_small.render("Score: " + str(score), True, BLACK)
 
-    # Create coin text
+    
     coin_text = font_small.render("Coins: " + str(coins), True, BLACK)
 
-    # Create enemy speed text
+    
     speed_text = font_small.render("Speed: " + str(enemy_speed), True, BLACK)
 
-    # Draw score in the top-left corner
+    
     screen.blit(score_text, (10, 10))
 
-    # Draw coins in the top-right corner
+    
     screen.blit(coin_text, (260, 10))
 
-    # Draw enemy speed under score
+
     screen.blit(speed_text, (10, 35))
 
-    # Update display
+    
     pygame.display.update()
 
     # Limit game speed to 60 FPS
