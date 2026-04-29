@@ -29,26 +29,26 @@ dx, dy = CELL, 0
 
 score = 0
 
-# Initial level
+
 level = 1
 
-# Initial snake speed
+
 speed = 10
 
-# Every 4 score points, level increases
+
 POINTS_FOR_NEXT_LEVEL = 4
 
-# Food disappears after 5 seconds
+
 FOOD_LIFETIME = 5000
 
-# Current food weight
+
 food_weight = 1
 
 # Time when food appeared
 food_spawn_time = pygame.time.get_ticks()
 
 
-# Function to generate food in a random place
+
 def generate_food():
     global food_weight, food_spawn_time
 
@@ -57,19 +57,19 @@ def generate_food():
         x = random.randrange(0, WIDTH, CELL)
         y = random.randrange(0, HEIGHT, CELL)
 
-        # Food must not appear inside the snake
+        
         if (x, y) not in snake:
 
-            # Randomly choose food weight
+           
             food_weight = random.choice([1, 2, 3])
 
-            # Remember the time when food appeared
+           
             food_spawn_time = pygame.time.get_ticks()
 
             return (x, y)
 
 
-# Function to choose food color by weight
+
 def get_food_color(weight):
     # Weight 1 food gives 1 point
     if weight == 1:
@@ -83,45 +83,45 @@ def get_food_color(weight):
     return (0, 150, 255)         # blue
 
 
-# Generate the first food
+
 food = generate_food()
 
 # Main game variable
 running = True
 
-# Main game loop
+
 while running:
 
-    # Check all events
+    
     for event in pygame.event.get():
 
-        # If player closes the window
+      
         if event.type == pygame.QUIT:
             running = False
 
-        # Check keyboard buttons
+        
         if event.type == pygame.KEYDOWN:
 
             # Move up only if snake is not moving vertically
             if event.key == pygame.K_UP and dy == 0:
                 dx, dy = 0, -CELL
 
-            # Move down only if snake is not moving vertically
+           
             if event.key == pygame.K_DOWN and dy == 0:
                 dx, dy = 0, CELL
 
-            # Move left only if snake is not moving horizontally
+            
             if event.key == pygame.K_LEFT and dx == 0:
                 dx, dy = -CELL, 0
 
-            # Move right only if snake is not moving horizontally
+            
             if event.key == pygame.K_RIGHT and dx == 0:
                 dx, dy = CELL, 0
 
     # Current time in milliseconds
     current_time = pygame.time.get_ticks()
 
-    # Check if food lifetime is over
+    
     if current_time - food_spawn_time > FOOD_LIFETIME:
         food = generate_food()
 
@@ -131,7 +131,7 @@ while running:
     # Create new head position
     new_head = (head[0] + dx, head[1] + dy)
 
-    # Check wall collision
+    
     if new_head[0] < 0 or new_head[0] >= WIDTH or new_head[1] < 0 or new_head[1] >= HEIGHT:
         running = False
         continue
@@ -144,19 +144,19 @@ while running:
     # Add new head to the beginning of the snake
     snake.insert(0, new_head)
 
-    # Check if snake eats food
+   
     if new_head == food:
 
-        # Increase score by food weight
+        
         score += food_weight
 
         # Generate new food
         food = generate_food()
 
-        # Increase level depending on score
+        
         new_level = score // POINTS_FOR_NEXT_LEVEL + 1
 
-        # If level changed, increase speed
+        
         if new_level > level:
             level = new_level
             speed += 2
@@ -172,13 +172,13 @@ while running:
     for x in range(0, WIDTH, CELL):
         pygame.draw.line(screen, (50, 50, 50), (x, 0), (x, HEIGHT))
 
-    # Draw horizontal grid lines
+    
     for y in range(0, HEIGHT, CELL):
         pygame.draw.line(screen, (50, 50, 50), (0, y), (WIDTH, y))
 
     # Draw snake
     for i, segment in enumerate(snake):
-        # Snake becomes a little darker from head to tail
+        
         green_value = max(80, 255 - i * 5)
         snake_color = (0, green_value, 0)
 
@@ -204,7 +204,7 @@ while running:
     # Calculate time left before food disappears
     time_left = (FOOD_LIFETIME - (current_time - food_spawn_time)) // 1000 + 1
 
-    # If time becomes negative, show 0
+    
     if time_left < 0:
         time_left = 0
 
@@ -220,13 +220,13 @@ while running:
     # Create timer text
     timer_text = font.render("Time: " + str(time_left), True, (255, 255, 255))
 
-    # Draw score on the screen
+    
     screen.blit(score_text, (10, 10))
 
-    # Draw level on the screen
+   
     screen.blit(level_text, (10, 40))
 
-    # Draw food weight on the screen
+   
     screen.blit(food_text, (10, 70))
 
     # Draw timer on the screen
@@ -238,5 +238,5 @@ while running:
     # Control game speed
     clock.tick(speed)
 
-# Quit pygame
+
 pygame.quit()

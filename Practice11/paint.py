@@ -107,10 +107,7 @@ while running:
             drawing = True
             start_pos = event.pos
 
-            # If fill mode is selected, fill clicked area immediately
-            if mode == "fill":
-                flood_fill(screen, event.pos, color)
-                drawing = False
+          
 
         # Mouse button released
         if event.type == pygame.MOUSEBUTTONUP:
